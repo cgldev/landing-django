@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mi Landing • Django + Bootstrap</title>
+
+    <!-- Bootstrap 5 (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    >
+
+    <!-- (Opcional) CSS propio: si usás static de la app, descomentá la línea de abajo
+         y seguí el paso 4 para cargar static. -->
+    {# <link rel="stylesheet" href="{% static 'landing/styles.css' %}"> #}
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">MiMarca</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#features">Características</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cta">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="py-5 bg-light border-bottom">
+      <div class="container text-center">
+        <h1 class="display-5 fw-bold">Landing simple con Django + Bootstrap</h1>
+        <p class="lead text-muted">Un sitio rápido, responsive y listo para mostrar tu proyecto.</p>
+        <a href="#cta" class="btn btn-primary btn-lg mt-2">¡Quiero más info!</a>
+      </div>
+    </header>
+
+    <!-- Features -->
+    <section id="features" class="py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Rápida</h5>
+                <p class="card-text">Componentes listos: botones, cards, grid y más.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Responsive</h5>
+                <p class="card-text">Se ve bien en celu, tablet y compu sin esfuerzo extra.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Escalable</h5>
+                <p class="card-text">Con Django podés crecer: formularios, BD, login y más.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Contacto -->
+    <section id="cta" class="py-5 bg-light border-top">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-3">¿Listo para empezar?</h2>
+        <p class="text-muted mb-4">Dejanos tu mail y te contactamos.</p>
+
+        <form class="row g-3 justify-content-center" method="post">
+          {% csrf_token %}
+          <div class="col-md-4">
+            <input type="email" name="email" class="form-control form-control-lg" placeholder="tu@correo.com" required>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-success btn-lg" type="submit">Enviar</button>
+          </div>
+        </form>
+
+        {% if submitted_email %}
+          <div class="alert alert-success mt-4" role="alert">
+            ¡Gracias! Recibimos tu correo: <strong>{{ submitted_email }}</strong>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-muted">
+      <div class="container">
+        <small>&copy; {{ year }} MiMarca. Todos los derechos reservados.</small>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous">
+    </script>
+  </body>
+</html>
